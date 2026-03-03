@@ -1,12 +1,5 @@
-# Build stage
-ARG ELIXIR_VERSION=1.17.9
-ARG OTP_VERSION=27.2.2
-ARG DEBIAN_VERSION=bookworm-slim
-
-ARG BUILDER_IMAGE="hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
-ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
-
-FROM ${BUILDER_IMAGE} AS builder
+# Build stage — use an explicit hexpm/elixir tag (they use full tags with date, e.g. ...-bookworm-20240513-slim)
+FROM hexpm/elixir:1.16.2-erlang-26.2.5-debian-bookworm-20240513-slim AS builder
 
 RUN apt-get update -y && apt-get install -y build-essential git curl \
     && apt-get clean && rm -f /var/lib/apt/lists/*_*
@@ -38,7 +31,7 @@ RUN mix assets.deploy
 RUN mix release
 
 # Runtime stage
-FROM ${RUNNER_IMAGE}
+FROM debian:bookworm-slim
 
 RUN apt-get update -y && apt-get install -y libstdc++6 openssl libncurses6 locales ca-certificates \
     && apt-get clean && rm -f /var/lib/apt/lists/*_*
