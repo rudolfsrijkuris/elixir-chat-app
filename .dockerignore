@@ -1,0 +1,26 @@
+/_build
+/deps
+/.formatter.exs
+/.git
+/.gitignore
+/.tool-versions
+/cover
+/doc
+/README.md
+/tmp
+*.md
+
+# Keep config and rel
+!/config
+!/rel
+
+# Ignore test and dev
+/test
+/config/dev.exs
+/config/test.exs
+
+# Ignore assets node_modules if present
+/assets/node_modules
+
+# Ignore demo image for smaller context (optional)
+# /demo.png

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={Plug.CSRFProtection.get_csrf_token()} />
+    <title>Chat · Phoenix</title>
+    <link phx-track-static rel="stylesheet" href="/assets/app.css" />
+    <script defer phx-track-static type="text/javascript" src="/assets/app.js"></script>
+  </head>
+  <body class="bg-gray-100 antialiased">
+    <header class="bg-white shadow">
+      <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+        <h1 class="text-xl font-semibold text-gray-800">Chat</h1>
+      </div>
+    </header>
+    <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <%= @inner_content %>
+    </main>
+  </body>
+</html>

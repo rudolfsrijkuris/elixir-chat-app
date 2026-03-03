@@ -1,0 +1,4 @@
+@import "tailwindcss";
+
+/* Scan Phoenix templates (paths relative to this file: assets/css/app.css) */
+@source "../../lib";

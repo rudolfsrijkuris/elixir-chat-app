@@ -1,0 +1,9 @@
+{
+  "name": "chat_api_assets",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "phoenix": "file:../deps/phoenix",
+    "phoenix_live_view": "file:../deps/phoenix_live_view"
+  }
+}
