@@ -51,12 +51,13 @@ ENV MIX_ENV="prod"
 
 COPY --from=builder --chown=nobody:nogroup /app/_build/${MIX_ENV}/rel/chat_api ./
 
-# Set env for Phoenix
+# Phoenix web server (PHX_SERVER=true required for releases)
 ENV PHX_SERVER=true
 
 # Coolify and most PaaS set PORT
 ENV PORT=4000
 
-EXPOSE ${PORT}
+EXPOSE 4000
 
-CMD ["/app/bin/server"]
+# Use bin/chat_api start (we don't COPY rel/ so bin/server overlay isn't in the image)
+CMD ["/app/bin/chat_api", "start"]
