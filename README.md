@@ -1,4 +1,4 @@
-# ChatApi
+# Elixir Realtime Chat demo
 
 **In-memory realtime chat demo** built with Phoenix LiveView and PubSub. No database — state lives in a supervised GenServer (ETS). Built to model the core mechanics of a realtime messaging backend using Phoenix primitives.
 
@@ -16,7 +16,7 @@ A small chat product: two users open the app, pick each other, and chat. Message
 - **Presence** — "X, Y in this chat" so you see who’s viewing the conversation.
 - **Message ordering** — Per-conversation monotonic sequence so order is deterministic.
 
-## Architecture (5 lines)
+## Architecture
 
 - **Conversations** are identified by a **topic** `user_id_1:user_id_2` (sorted). I intentionally avoided per-room processes to keep coordination simple; PubSub topics model rooms, while Store is the authoritative state holder. Each conversation uses a **PubSub topic** (`room:#{topic}`) plus a **Presence topic** (`room_presence:#{topic}`).
 - **State** is owned by a single **GenServer** (`ChatApi.Store`): users, messages (with per-conversation `seq`), and read receipts in ETS. Store is under the app supervisor. I chose a single Store GenServer (instead of per-room processes) to keep the demo simple and ensure consistent sequencing; in a production system I'd likely partition by conversation or shard by topic for scalability.
